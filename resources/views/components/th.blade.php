@@ -1,1 +1,1 @@
-<th class="px-6 py-3 text-left text-sm font-medium text-gray-700 border-b">{{ $slot }}</th>
+<th class="px-6 py-3 text-left text-sm font-medium text-gray-700 border-b text-center">{{ $slot }}</th>

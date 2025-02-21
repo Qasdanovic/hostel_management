@@ -21,7 +21,7 @@ class CapaciteChambreController extends Controller
      */
     public function create()
     {
-        //
+        return view("capacite_chambre.create");
     }
 
     /**
@@ -29,7 +29,14 @@ class CapaciteChambreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'titre_capacite' => ['required'],
+            'numero_capacite' => ['required'],
+        ]);
+
+        Capacite_chambre::create($data);
+
+        return redirect()->route('capacite.index')->with("success", "new capacite added successfully");
     }
 
     /**
@@ -43,24 +50,35 @@ class CapaciteChambreController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Capacite_chambre $capacite_chambre)
+    public function edit(Request $request)
     {
-        //
+        $capacite = Capacite_chambre::findOrFail($request->capacite);
+        return view('capacite_chambre.edit', compact("capacite"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Capacite_chambre $capacite_chambre)
+    public function update(Request $request)
     {
-        //
+        $data = $request->validate([
+            'titre_capacite' => ['required'],
+            'numero_capacite' => ['required'],
+        ]);
+
+        $capacite = Capacite_chambre::findOrFail($request->capacite);
+        $capacite->update($data);
+        return redirect()->route('capacite.index')->with("success", "capacite updated successfully");
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Capacite_chambre $capacite_chambre)
+    public function destroy(Request $request)
     {
-        //
+        $cap = Capacite_chambre::findOrFail($request->capacite);
+        $cap->delete();
+        return redirect()->route('capacite.index')->with("success", "capacite deleted successfully");
     }
 }
