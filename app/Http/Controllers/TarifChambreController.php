@@ -12,7 +12,8 @@ class TarifChambreController extends Controller
      */
     public function index()
     {
-        //
+        $tarifs = Tarif_chambre::all() ;
+        return view("tarif.index", compact("tarifs")) ;
     }
 
     /**

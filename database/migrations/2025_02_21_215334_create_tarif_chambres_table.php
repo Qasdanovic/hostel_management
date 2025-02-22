@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('tarif_chambres', function (Blueprint $table) {
             $table->id();
+            $table->float("prix_base_nuit")->nullable();
+            $table->float("prix_base_passage")->nullable();
+            $table->float("n_prix_nuit")->nullable();
+            $table->float("n_prix_passage")->nullable();
             $table->timestamps();
         });
     }

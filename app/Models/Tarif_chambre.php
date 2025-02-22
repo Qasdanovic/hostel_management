@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tarif_chambre extends Model
 {
-    //
+    protected $guarded = [] ;
 }
