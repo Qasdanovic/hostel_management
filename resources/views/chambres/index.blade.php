@@ -33,23 +33,26 @@
                 </tr>
             </thead>
             <tbody>
+                {{-- @dd($chambres) --}}
                 @foreach ($chambres as $ch)
                     <tr class="bg-gray-200">
-                        <x-td>{{ $ch->id }}</x-td>
+                        <x-td>{{ $ch->chambre_id }}</x-td>
                         <x-td>{{ $ch->numero_chambre }}</x-td>
                         <x-td>{{ $ch->type_chambre }}</x-td>
                         <x-td>{{ $ch->prix_base_nuit }}</x-td>
-                        <x-td>{{ $ch->n_base_nuit }}</x-td>
+                        <x-td>{{ $ch->prix_base_passage }}</x-td>
                         <x-td>{{ $ch->titre_capacite }}</x-td>
                         <x-td>{{ $ch->nbr_lits_chambre }}</x-td>
                         <x-td>{{ $ch->etage_chambre }}</x-td>
                         <x-td>{{ $ch->nombre_adultes_enfants_chambre }}</x-td>
-                        <x-td>{{ $ch->image }}</x-td>
+                        <x-td>
+                            <img src="{{ asset('storage/'.$ch->image_chambre) }}" alt="{{ $ch->image_chambre }}">
+                        </x-td>
                         <x-td class="flex flex-wrap gap-2 justify-center">
                             <x-button class="bg-blue-600">
-                                <a href="{{route('chambres.edit', $ch->id)}}">update</a>
+                                <a href="{{ route('chambres.edit', $ch->chambre_id)}} ">update</a>
                             </x-button>
-                            <form action="{{ route('chambres.destroy', $ch->id) }}" method="post">
+                            <form action="{{ route('chambres.destroy', $ch->chambre_id) }}" method="post">
                                 @csrf
                                 @method("DELETE")
                                 <x-button class="bg-red-600" onclick="return confirm('are you sure')">
@@ -61,5 +64,5 @@
                 @endforeach
             </tbody>
         </table>
-    </div> <!-- End of responsive div -->
+    </div> 
 </x-app-layout>

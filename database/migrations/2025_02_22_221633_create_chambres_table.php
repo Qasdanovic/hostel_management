@@ -23,8 +23,8 @@ return new class extends Migration
             $table->integer("nbr_lits_chambre");
             $table->string("image_chambre")->nullable();
             $table->foreignIdFor(Tarif_chambre::class)->constrained("tarif_chambres")->cascadeOnDelete();
-            $table->foreignIdFor(Type_chambre::class)->constrained("tarif_chambres")->cascadeOnDelete();
-            $table->foreignIdFor(Capacite_chambre::class)->constrained("tarif_chambres")->cascadeOnDelete();
+            $table->foreignIdFor(Type_chambre::class)->constrained("type_chambres")->cascadeOnDelete();
+            $table->foreignIdFor(Capacite_chambre::class)->constrained("capacite_chambres")->cascadeOnDelete();
             $table->timestamps();
         });
     }
