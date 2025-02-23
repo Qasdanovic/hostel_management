@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-slot:header>chambre tarifs</x-slot:header>
 
     <div class="flex justify-between my-7">
         <h1 class="text-white text-3xl">tarifs des chambres :</h1>

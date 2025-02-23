@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-slot:header>chambre capacites</x-slot:header>
 
     <div class="flex justify-between my-7">
         <h1 class="text-white text-3xl">modifier un capacite :</h1>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CapaciteChambreController;
+use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TarifChambreController;
 use App\Http\Controllers\TypeChambreController;
@@ -21,12 +22,13 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::resource('types', TypeChambreController::class);
     Route::resource("capacite", CapaciteChambreController::class);
     Route::resource("tarifs", TarifChambreController::class);
+    Route::resource("chambres", ChambreController::class);
 });
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
