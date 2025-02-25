@@ -16,18 +16,17 @@ class ChambreController extends Controller
      */
     public function index()
     {
-        // $chambres = Chambre::with([
-        //     "type",
-        //     "capacite",
-        //     "tarif"
-        // ])->get();
+        $chambres = Chambre::with( "type")->get();
 
-        $chambres = DB::table('chambres')
-            ->join('type_chambres', 'chambres.type_chambre_id', '=', 'type_chambres.id')
-            ->join('capacite_chambres', 'chambres.capacite_chambre_id', '=', 'capacite_chambres.id')
-            ->join('tarif_chambres', 'chambres.tarif_chambre_id', '=', 'tarif_chambres.id')
-            ->select(["chambres.id as chambre_id", "chambres.*", "tarif_chambres.*", "capacite_chambres.*", "type_chambres.*"])
-            ->get();
+        dump($chambres) ;
+        // dd($chambres);
+
+        // $chambres = DB::table('chambres')
+        //     ->join('type_chambres', 'chambres.type_chambre_id', '=', 'type_chambres.id')
+        //     ->join('capacite_chambres', 'chambres.capacite_chambre_id', '=', 'capacite_chambres.id')
+        //     ->join('tarif_chambres', 'chambres.tarif_chambre_id', '=', 'tarif_chambres.id')
+        //     ->select(["chambres.id as chambre_id", "chambres.*", "tarif_chambres.*", "capacite_chambres.*", "type_chambres.*"])
+        //     ->get();
 
         // dd($chambres);
 
@@ -89,9 +88,18 @@ class ChambreController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Chambre $chambre)
+    public function show(Request $request)
     {
-        //
+        $chambre = DB::table("chambres")
+                        ->join("tarif_chambres", "chambres.tarif_chambre_id", "=", "tarif_chambres.id")
+                        ->join("type_chambres", "chambres.type_chambre_id", "=", "type_chambres.id")
+                        ->join("capacite_chambres", "chambres.capacite_chambre_id", "=", "capacite_chambres.id")
+                        ->select("chambres.id as chambre_id","chambres.*", "tarif_chambres.*", "type_chambres.*", "capacite_chambres.*")
+                        ->where("chambres.id", "=", $request->chambre)
+                        ->first();
+
+        // dd($chambre);
+        return view("chambres.show", compact("chambre"));
     }
 
     /**

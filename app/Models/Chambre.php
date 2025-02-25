@@ -14,16 +14,16 @@ class Chambre extends Model
 
     public function type()
     {
-        return $this->belongsTo(Type_chambre::class, 'type_chmabre_id', 'id');
+        return $this->belongsTo(Type_chambre::class, 'type_chambre_id', 'id');
     }
 
     public function capacite()
     {
-        return $this->belongsTo(Capacite_chambre::class, 'capacite_chmabre_id', 'id');
+        return $this->belongsTo(Capacite_chambre::class, 'capacite_chambre_id', 'id');
     }
 
     public function tarif()
     {
-        return $this->belongsTo(Tarif_chambre::class, 'tarif_chmabre_id', 'id');
+        return $this->belongsTo(Tarif_chambre::class, 'tarif_chambre_id', 'id');
     }
 }

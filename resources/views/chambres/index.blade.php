@@ -16,7 +16,7 @@
 
     <!-- Make the table responsive -->
     <div class="overflow-x-auto">
-        <table class="min-w-full border border-gray-300 bg-white text-center">
+        <table class="min-w-full border border-gray-300 bg-white text-center rounded-md">
             <thead class='text-center'>
                 <tr class="bg-gray-300">
                     <x-th>id</x-th>
@@ -59,6 +59,9 @@
                                     delete
                                 </x-button>
                             </form>
+                            <x-button class="bg-green-600">
+                                <a href="{{ route('chambres.show', $ch->chambre_id)}} ">details</a>
+                            </x-button>
                         </x-td>
                     </tr>
                 @endforeach

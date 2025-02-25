@@ -13,6 +13,11 @@
             {{ session('success') }}
         </div>
     @endif
+    @if(session()->has('error'))
+        <div class="my-2 px-4 py-2 text-red-800 bg-red-400 border border-red-500 rounded">
+            {{ session('error') }}
+        </div>
+    @endif
     <table class="min-w-full border border-gray-300 bg-white text-center">
         <thead class='text-center'>
             <tr class="bg-gray-300">
@@ -29,9 +34,11 @@
                     <x-td>{{ $type->type_chambre }}</x-td>
                     <x-td>{{ $type->description }}</x-td>
                     <x-td class="flex gap-4 text-center">
-                        <x-button class="bg-blue-600" type="submit">
-                            <a href="{{route('types.edit', $type->id)}}">update</a>
-                        </x-button>
+                        <a href="{{route('types.edit', $type->id)}}">
+                            <x-button class="bg-blue-600" type="submit">
+                                update
+                            </x-button>
+                        </a>
                         <form action="{{ route('types.destroy', $type->id) }}" method="post">
                             @csrf
                             @method("DELETE")

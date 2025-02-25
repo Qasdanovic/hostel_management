@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Type_chambre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TypeChambreController extends Controller
 {
@@ -75,10 +76,19 @@ class TypeChambreController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, Type_chambre $type_chambre)
     {
+        $check = DB::table("chambres")
+                    ->where("type_chambre_id", "=", $request->type)
+                    ->exists();
+
         $type = Type_chambre::findOrFail($request->type);
+
+        if($check){
+            return back()->with('error', 'Opération interdite : Type déjà lié à une chambre');
+        };
+
         $type->delete();
-        return back()->with('success', 'deleted successfully');
+        return back()->with('success', 'supprimer avec success');
     }
 }

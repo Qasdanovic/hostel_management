@@ -14,7 +14,7 @@
             <!-- Row 1: Two Inputs in a row -->
             <div class="mt-4 flex-1">
                 <label for="numero_chambre" class="text-white">Numéro de chambre :</label>
-                <x-text-input id="numero_chambre" class="block mt-1 w-full" type="text" name="numero_chambre" :value="old('numero_chambre')" />
+                <x-text-input id="numero_chambre" class="block mt-1 w-full" type="number" name="numero_chambre" :value="old('numero_chambre')" />
                 <x-input-error :messages="$errors->get('numero_chambre')" class="mt-2" />
             </div>
             <div class="mt-4 flex-1">
