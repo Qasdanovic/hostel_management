@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Capacite_chambre;
 use App\Models\Chambre;
-use App\Models\Tarif_chambre;
-use App\Models\Type_chambre;
+use App\Models\TarifChambre;
+use App\Models\TypeChambre;
 use Illuminate\Http\Request;
+use App\Models\CapaciteChambre;
 use Illuminate\Support\Facades\DB;
 
 class ChambreController extends Controller
@@ -16,10 +16,8 @@ class ChambreController extends Controller
      */
     public function index()
     {
-        $chambres = Chambre::with( "type")->get();
+        $chambres = Chambre::with( "type", "capacite", "tarif")->simplePaginate(5);
 
-        dump($chambres) ;
-        // dd($chambres);
 
         // $chambres = DB::table('chambres')
         //     ->join('type_chambres', 'chambres.type_chambre_id', '=', 'type_chambres.id')
@@ -27,11 +25,6 @@ class ChambreController extends Controller
         //     ->join('tarif_chambres', 'chambres.tarif_chambre_id', '=', 'tarif_chambres.id')
         //     ->select(["chambres.id as chambre_id", "chambres.*", "tarif_chambres.*", "capacite_chambres.*", "type_chambres.*"])
         //     ->get();
-
-        // dd($chambres);
-
-        // $types = Type_chambre::with("chambres")->get();
-        // dd($types);
 
 
 
@@ -43,9 +36,9 @@ class ChambreController extends Controller
      */
     public function create()
     {
-        $types = Type_chambre::all() ;
-        $capacites = Capacite_chambre::all() ;
-        $tarifs = Tarif_chambre::all() ;
+        $types = TypeChambre::all() ;
+        $capacites = CapaciteChambre::all() ;
+        $tarifs = TarifChambre::all() ;
 
 
         return view("chambres.create", [
@@ -66,7 +59,7 @@ class ChambreController extends Controller
             "renfort_chambre" => "required",
             "etage_chambre" => "required",
             "nbr_lits_chambre" => "required",
-            "image_chambre" => "required|image|mimes:png,jpg,jpeg,svg|max:2024",
+            "image_chambre" => "image|mimes:png,jpg,jpeg,svg|max:2024",
             "tarif_chambre_id" => "required|exists:tarif_chambres,id",
             "type_chambre_id" => "required|exists:type_chambres,id",
             "capacite_chambre_id" => "required|exists:capacite_chambres,id",
@@ -96,7 +89,8 @@ class ChambreController extends Controller
                         ->join("capacite_chambres", "chambres.capacite_chambre_id", "=", "capacite_chambres.id")
                         ->select("chambres.id as chambre_id","chambres.*", "tarif_chambres.*", "type_chambres.*", "capacite_chambres.*")
                         ->where("chambres.id", "=", $request->chambre)
-                        ->first();
+                        ->first()
+                        ;
 
         // dd($chambre);
         return view("chambres.show", compact("chambre"));
@@ -107,9 +101,9 @@ class ChambreController extends Controller
      */
     public function edit(Chambre $chambre)
     {
-        $types = Type_chambre::all() ;
-        $capacites = Capacite_chambre::all() ;
-        $tarifs = Tarif_chambre::all() ;
+        $types = TypeChambre::all() ;
+        $capacites = CapaciteChambre::all() ;
+        $tarifs = TarifChambre::all() ;
         return view("chambres.edit", [
             "chambre" => $chambre,
             "tarifs" => $tarifs ,

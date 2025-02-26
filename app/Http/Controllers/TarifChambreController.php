@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tarif_chambre;
+use App\Models\TarifChambre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TarifChambreController extends Controller
 {
@@ -12,7 +13,7 @@ class TarifChambreController extends Controller
      */
     public function index()
     {
-        $tarifs = Tarif_chambre::all() ;
+        $tarifs = TarifChambre::all() ;
         return view("tarif.index", compact("tarifs")) ;
     }
 
@@ -36,7 +37,7 @@ class TarifChambreController extends Controller
             "n_prix_passage" => "required|numeric",
         ]) ;
 
-        Tarif_chambre::create($data) ;
+        TarifChambre::create($data) ;
         
         return redirect()->route(route: "tarifs.index")->with("success", "new tarif added successfully");
     }
@@ -44,7 +45,7 @@ class TarifChambreController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tarif_chambre $tarif_chambre)
+    public function show(TarifChambre $tarif_chambre)
     {
         //
     }
@@ -54,7 +55,7 @@ class TarifChambreController extends Controller
      */
     public function edit(Request $request)
     {
-        $tarif = Tarif_chambre::findOrFail($request->tarif) ;
+        $tarif = TarifChambre::findOrFail($request->tarif) ;
         return view("tarif.edit", compact("tarif")) ;
     }
 
@@ -70,7 +71,7 @@ class TarifChambreController extends Controller
             "n_prix_passage" => "required|numeric",
         ]) ;
 
-        $tarif = Tarif_chambre::findOrFail($request->tarif) ;
+        $tarif = TarifChambre::findOrFail($request->tarif) ;
         $tarif->update($data);
         
         return redirect()->route(route: "tarifs.index")->with("success", "tarif updated successfully");
@@ -81,8 +82,17 @@ class TarifChambreController extends Controller
      */
     public function destroy(Request $request)
     {
-        Tarif_chambre::findOrFail($request->tarif)->delete() ;
-        return redirect()->route(route: "tarifs.index")->with("success", "tarif deleted successfully");
+        $tarif = TarifChambre::findOrFail($request->tarif);
 
+        $check = DB::table("chambres")
+                    ->where("tarif_chambre_id", "=", $request->tarif)
+                    ->exists();
+
+        if($check){
+            return back()->with('error', 'Opération interdite : Tarif déjà lié à une chambre');
+        }
+
+        $tarif->delete() ;
+        return redirect()->route(route: "tarifs.index")->with("success", "tarif deleted successfully");
     }
 }

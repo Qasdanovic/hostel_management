@@ -46,6 +46,11 @@
                                 delete
                             </x-button>
                         </form>
+                        <a href="{{route('types.show', $type->id)}}">
+                            <x-button class="bg-green-600">
+                                details
+                            </x-button>
+                        </a>
                     </x-td>
                 </tr>
             @endforeach

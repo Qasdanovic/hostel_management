@@ -13,6 +13,12 @@
             {{ session('success') }}
         </div>
     @endif
+    @if(session()->has('error'))
+        <div class="my-2 px-4 py-2 text-red-800 bg-red-400 border border-red-500 rounded">
+            {{ session('error') }}
+        </div>
+    @endif
+    
     <table class="min-w-full border border-gray-300 bg-white text-center">
         <thead class='text-center'>
             <tr class="bg-gray-300">

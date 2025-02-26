@@ -2,28 +2,29 @@
 
 namespace App\Models;
 
-use App\Models\Type_chambre;
-use App\Models\Tarif_chambre;
-use App\Models\Capacite_chambre;
+use App\Models\TypeChambre;
+use App\Models\TarifChambre;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Chambre extends Model
 {
+    use HasFactory;
     protected $guarded = [] ;
     protected $table = "chambres" ;
 
     public function type()
     {
-        return $this->belongsTo(Type_chambre::class, 'type_chambre_id', 'id');
+        return $this->belongsTo(TypeChambre::class, 'type_chambre_id', 'id');
     }
 
     public function capacite()
     {
-        return $this->belongsTo(Capacite_chambre::class, 'capacite_chambre_id', 'id');
+        return $this->belongsTo(CapaciteChambre::class, 'capacite_chambre_id', 'id');
     }
 
     public function tarif()
     {
-        return $this->belongsTo(Tarif_chambre::class, 'tarif_chambre_id', 'id');
+        return $this->belongsTo(TarifChambre::class, 'tarif_chambre_id', 'id');
     }
 }

@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Capacite_chambre extends Model
+class CapaciteChambre extends Model
 {
     protected $guarded = [] ;
+    
 }

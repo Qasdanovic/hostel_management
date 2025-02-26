@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Type_chambre;
+use App\Models\TypeChambre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,7 +13,7 @@ class TypeChambreController extends Controller
      */
     public function index()
     {
-        $types = Type_chambre::all() ;
+        $types = TypeChambre::all() ;
         return view("type_chambre.index", compact('types'));
     }
 
@@ -35,16 +35,19 @@ class TypeChambreController extends Controller
             "description" => "required|min:10"
         ]) ;
 
-        Type_chambre::create($data);
+        TypeChambre::create($data);
         return redirect()->route('types.index')->with('success', 'new type added successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Type_chambre $type_chambre)
+    public function show(Request $request)
     {
-        //
+        $type = TypeChambre::with('chambres')
+                            ->where("id", $request->type)
+                            ->first();
+        return view("type_chambre.show", compact("type"));
     }
 
     /**
@@ -52,21 +55,21 @@ class TypeChambreController extends Controller
      */
     public function edit(Request $request)
     {
-        $type = Type_chambre::findOrFail($request->type) ;
+        $type = TypeChambre::findOrFail($request->type) ;
         return view('type_chambre.edit', compact('type'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Type_chambre $type_chambre)
+    public function update(Request $request, TypeChambre $type_chambre)
     {
         $data = $request->validate([
             "type_chambre" => "required|min:5",
             "description" => "required|min:10"
         ]) ;
 
-        $type = Type_chambre::findOrFail($request->type) ;
+        $type = TypeChambre::findOrFail($request->type) ;
 
         $type->update($data);
         
@@ -76,13 +79,13 @@ class TypeChambreController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, Type_chambre $type_chambre)
+    public function destroy(Request $request, TypeChambre $type_chambre)
     {
         $check = DB::table("chambres")
                     ->where("type_chambre_id", "=", $request->type)
                     ->exists();
 
-        $type = Type_chambre::findOrFail($request->type);
+        $type = TypeChambre::findOrFail($request->type);
 
         if($check){
             return back()->with('error', 'Opération interdite : Type déjà lié à une chambre');

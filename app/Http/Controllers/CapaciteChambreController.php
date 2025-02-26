@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Capacite_chambre;
+
 use Illuminate\Http\Request;
+use App\Models\CapaciteChambre;
+use Illuminate\Support\Facades\DB;
 
 class CapaciteChambreController extends Controller
 {
@@ -12,7 +14,7 @@ class CapaciteChambreController extends Controller
      */
     public function index()
     {
-        $capacites = Capacite_chambre::all() ;
+        $capacites = CapaciteChambre::all() ;
         return view("capacite_chambre.index", compact("capacites"));
     }
 
@@ -34,7 +36,7 @@ class CapaciteChambreController extends Controller
             'numero_capacite' => ['required'],
         ]);
 
-        Capacite_chambre::create($data);
+        CapaciteChambre::create($data);
 
         return redirect()->route('capacite.index')->with("success", "new capacite added successfully");
     }
@@ -42,7 +44,7 @@ class CapaciteChambreController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Capacite_chambre $capacite_chambre)
+    public function show(CapaciteChambre $capacite_chambre)
     {
         //
     }
@@ -52,7 +54,7 @@ class CapaciteChambreController extends Controller
      */
     public function edit(Request $request)
     {
-        $capacite = Capacite_chambre::findOrFail($request->capacite);
+        $capacite = CapaciteChambre::findOrFail($request->capacite);
         return view('capacite_chambre.edit', compact("capacite"));
     }
 
@@ -66,7 +68,7 @@ class CapaciteChambreController extends Controller
             'numero_capacite' => ['required'],
         ]);
 
-        $capacite = Capacite_chambre::findOrFail($request->capacite);
+        $capacite = CapaciteChambre::findOrFail($request->capacite);
         $capacite->update($data);
         return redirect()->route('capacite.index')->with("success", "capacite updated successfully");
 
@@ -77,8 +79,17 @@ class CapaciteChambreController extends Controller
      */
     public function destroy(Request $request)
     {
-        $cap = Capacite_chambre::findOrFail($request->capacite);
-        $cap->delete();
-        return redirect()->route('capacite.index')->with("success", "capacite deleted successfully");
+        $check = DB::table("chambres")
+                    ->where("capacite_chambre_id", "=", $request->capacite)
+                    ->exists();
+
+        $capacite = CapaciteChambre::findOrFail($request->capacite);
+
+        if($check){
+            return back()->with('error', 'Opération interdite : Capacite déjà lié à une chambre');
+        };
+
+        $capacite->delete();
+        return back()->with('success', 'supprimer avec success');
     }
 }

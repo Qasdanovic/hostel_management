@@ -12,22 +12,22 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('types.index')" :active="request()->routeIs('types.index')">
+                    <x-nav-link :href="route('types.index')" :active="request()->routeIs('types.*')">
                         {{ __('chambre types') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('capacite.index')" :active="request()->routeIs('capacite.index')">
+                    <x-nav-link :href="route('capacite.index')" :active="request()->routeIs('capacite.*')">
                         {{ __('chambre capacite') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('tarifs.index')" :active="request()->routeIs('tarifs.index')">
+                    <x-nav-link :href="route('tarifs.index')" :active="request()->routeIs('tarifs.*')">
                         {{ __('chambre tarif') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('chambres.index')" :active="request()->routeIs('chambres.index')">
+                    <x-nav-link :href="route('chambres.index')" :active="request()->routeIs('chambres.*')">
                         {{ __('chambres') }}
                     </x-nav-link>
                 </div>

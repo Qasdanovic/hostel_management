@@ -16,7 +16,7 @@
 
     <!-- Make the table responsive -->
     <div class="overflow-x-auto">
-        <table class="min-w-full border border-gray-300 bg-white text-center rounded-md">
+        <table class="min-w-full border border-gray-300 bg-white text-center rounded-md my-3">
             <thead class='text-center'>
                 <tr class="bg-gray-300">
                     <x-th>id</x-th>
@@ -38,21 +38,21 @@
                     <tr class="bg-gray-200">
                         <x-td>{{ $ch->chambre_id }}</x-td>
                         <x-td>{{ $ch->numero_chambre }}</x-td>
-                        <x-td>{{ $ch->type_chambre }}</x-td>
-                        <x-td>{{ $ch->prix_base_nuit }}</x-td>
-                        <x-td>{{ $ch->prix_base_passage }}</x-td>
-                        <x-td>{{ $ch->titre_capacite }}</x-td>
-                        <x-td>{{ $ch->nbr_lits_chambre }}</x-td>
+                        <x-td>{{ $ch->type->type_chambre }}</x-td>
+                        <x-td>{{ $ch->tarif->prix_base_nuit }}</x-td>
+                        <x-td>{{ $ch->tarif->prix_base_passage }}</x-td>
+                        <x-td>{{ $ch->capacite->titre_capacite }}</x-td>
+                        <x-td>{{ $ch->capacite->nbr_lits_chambre }}</x-td>
                         <x-td>{{ $ch->etage_chambre }}</x-td>
-                        <x-td>{{ $ch->nombre_adultes_enfants_chambre }}</x-td>
+                        <x-td>{{ $ch->capacite->nombre_adultes_enfants_chambre }}</x-td>
                         <x-td>
                             <img src="{{ asset('storage/'.$ch->image_chambre) }}" alt="{{ $ch->image_chambre }}">
                         </x-td>
                         <x-td class="flex flex-wrap gap-2 justify-center">
                             <x-button class="bg-blue-600">
-                                <a href="{{ route('chambres.edit', $ch->chambre_id)}} ">update</a>
+                                <a href="{{ route('chambres.edit', $ch->id)}} ">update</a>
                             </x-button>
-                            <form action="{{ route('chambres.destroy', $ch->chambre_id) }}" method="post">
+                            <form action="{{ route('chambres.destroy', $ch->id) }}" method="post">
                                 @csrf
                                 @method("DELETE")
                                 <x-button class="bg-red-600" onclick="return confirm('are you sure')">
@@ -60,12 +60,13 @@
                                 </x-button>
                             </form>
                             <x-button class="bg-green-600">
-                                <a href="{{ route('chambres.show', $ch->chambre_id)}} ">details</a>
+                                <a href="{{ route('chambres.show', $ch->id)}} ">details</a>
                             </x-button>
                         </x-td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        {{ $chambres->links() }}
     </div> 
 </x-app-layout>
