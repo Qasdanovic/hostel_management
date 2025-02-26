@@ -19,7 +19,11 @@
     <div class="text-white">
         chambres avec ce type :
         @foreach ($type->chambres as $item)
+<<<<<<< HEAD
             <span class="text-bold">{{ $item->numero_chambre }} |</span>
+=======
+            <span class="text-bold">{{ $item->numero_chambre }}</span>
+>>>>>>> c8cbc06 (7- create show page for each controller)
         @endforeach
     </div>
 </x-app-layout>

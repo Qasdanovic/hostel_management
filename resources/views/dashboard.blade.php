@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
 
+<<<<<<< HEAD
     <div class="py-12 bg-gray-100 dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Welcome Message -->
@@ -17,6 +18,37 @@
                         <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">Welcome back,</h3>
                         <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">{{ Auth::user()->name }}</p>
                     </div>
+=======
+    <div class="py-12 gap-4 flex">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 w-full text-center">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <a href="{{ route('types.index') }}" class="text-xl">types</a>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8  w-full">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    {{ __("You're logged in!") }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-12 gap-4 flex">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 w-full">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    {{ __("You're logged in!") }}
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8  w-full">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    {{ __("You're logged in!") }}
+>>>>>>> c8cbc06 (7- create show page for each controller)
                 </div>
             </div>
 
