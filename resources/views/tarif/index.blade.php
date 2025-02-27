@@ -32,22 +32,24 @@
         </thead>
         <tbody>
             @foreach ($tarifs as $tarif)
-                <tr class="bg-gray-200">
+                <tr class="bg-gray-200 border-gray-400 border-2">
                     <x-td>{{ $tarif->id }}</x-td>
                     <x-td>{{ $tarif->prix_base_nuit }}</x-td>
                     <x-td>{{ $tarif->prix_base_passage }}</x-td>
                     <x-td>{{ $tarif->n_prix_nuit }}</x-td>
                     <x-td>{{ $tarif->n_prix_passage }}</x-td>
                     <x-td class="flex gap-4 text-center">
-                        <x-button class="bg-blue-600" type="submit">
-                            <a href="{{route('tarifs.edit', $tarif->id)}}">update</a>
-                        </x-button>
+                        <a href="{{route('tarifs.edit', $tarif->id)}}">
+                                <x-button-edit type="submit">
+                                    modifier
+                                </x-button-edit>
+                            </a>
                         <form action="{{ route('tarifs.destroy', $tarif->id) }}" method="post">
                             @csrf
                             @method("DELETE")
-                            <x-button class="bg-red-600" onclick="return confirm('are you sure')">
+                            <x-button-delete>
                                 delete
-                            </x-button>
+                            </x-button-delete>
                         </form>
                     </x-td>
                 </tr>

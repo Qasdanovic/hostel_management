@@ -29,27 +29,27 @@
         </thead>
         <tbody>
             @foreach ($types as $type)
-                <tr class="bg-gray-200">
+                <tr class="bg-gray-200 border-gray-400 border-2">
                     <x-td>{{ $type->id }}</x-td>
                     <x-td>{{ $type->type_chambre }}</x-td>
                     <x-td>{{ $type->description }}</x-td>
                     <x-td class="flex gap-4 text-center">
                         <a href="{{route('types.edit', $type->id)}}">
-                            <x-button class="bg-blue-600" type="submit">
-                                update
-                            </x-button>
+                            <x-button-edit type="submit">
+                                modifier
+                            </x-button-edit>
                         </a>
                         <form action="{{ route('types.destroy', $type->id) }}" method="post">
                             @csrf
                             @method("DELETE")
-                            <x-button class="bg-red-600" onclick="return confirm('are you sure')">
-                                delete
-                            </x-button>
+                            <x-button-delete>
+                                supprimer
+                            </x-button-delete>
                         </form>
                         <a href="{{route('types.show', $type->id)}}">
-                            <x-button class="bg-green-600">
+                            <x-button-details>
                                 details
-                            </x-button>
+                            </x-button-details>
                         </a>
                     </x-td>
                 </tr>

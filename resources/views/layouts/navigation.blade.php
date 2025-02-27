@@ -6,31 +6,42 @@
                 <!-- Logo -->
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-nav-link class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <div>
                         {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('types.index')" :active="request()->routeIs('types.*')">
+                    </div>
+                </x-nav-link>
+                <x-nav-link class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" :href="route('types.index')" :active="request()->routeIs('types.*')">
+                    <div>
                         {{ __('chambre types') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('capacite.index')" :active="request()->routeIs('capacite.*')">
+                    </div>
+                </x-nav-link>
+                <x-nav-link class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" :href="route('capacite.index')" :active="request()->routeIs('capacite.*')">
+                    <div>
                         {{ __('chambre capacite') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('tarifs.index')" :active="request()->routeIs('tarifs.*')">
+                    </div>
+                </x-nav-link>
+                <x-nav-link class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" :href="route('tarifs.index')" :active="request()->routeIs('tarifs.*')">
+                    <div>
                         {{ __('chambre tarif') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('chambres.index')" :active="request()->routeIs('chambres.*')">
+                    </div>
+                </x-nav-link>
+                <x-nav-link class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" :href="route('chambres.index')" :active="request()->routeIs('chambres.*')">
+                    <div>
                         {{ __('chambres') }}
-                    </x-nav-link>
-                </div>
+                    </div>
+                </x-nav-link>
+                <x-nav-link class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" :href="route('reservations.index')" :active="request()->routeIs('reservations.*')">
+                    <div>
+                        {{ __('reservations') }}
+                    </div>
+                </x-nav-link>
+                <x-nav-link class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" :href="route('clients.index')" :active="request()->routeIs('clients.*')">
+                    <div>
+                        {{ __('clients') }}
+                    </div>
+                </x-nav-link>
+                
             </div>
 
             <!-- Settings Dropdown -->

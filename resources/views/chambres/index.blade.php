@@ -35,8 +35,8 @@
             <tbody>
                 {{-- @dd($chambres) --}}
                 @foreach ($chambres as $ch)
-                    <tr class="bg-gray-200">
-                        <x-td>{{ $ch->chambre_id }}</x-td>
+                    <tr class="bg-gray-200 border-gray-400 border-2">
+                        <x-td>{{ $ch->id }}</x-td>
                         <x-td>{{ $ch->numero_chambre }}</x-td>
                         <x-td>{{ $ch->type->type_chambre }}</x-td>
                         <x-td>{{ $ch->tarif->prix_base_nuit }}</x-td>
@@ -49,19 +49,23 @@
                             <img src="{{ asset('storage/'.$ch->image_chambre) }}" alt="{{ $ch->image_chambre }}">
                         </x-td>
                         <x-td class="flex flex-wrap gap-2 justify-center">
-                            <x-button class="bg-blue-600">
-                                <a href="{{ route('chambres.edit', $ch->id)}} ">update</a>
-                            </x-button>
+                            <a href="{{ route('chambres.edit', $ch->id)}} ">
+                                    <x-button-edit>
+                                        modifier
+                                    </x-button-edit>
+                                </a>
                             <form action="{{ route('chambres.destroy', $ch->id) }}" method="post">
                                 @csrf
                                 @method("DELETE")
-                                <x-button class="bg-red-600" onclick="return confirm('are you sure')">
-                                    delete
-                                </x-button>
+                                <x-button-delete>
+                                    supprimer
+                                </x-button-delete>
                             </form>
-                            <x-button class="bg-green-600">
-                                <a href="{{ route('chambres.show', $ch->id)}} ">details</a>
-                            </x-button>
+                            <a href="{{ route('chambres.show', $ch->id)}} ">
+                                    <x-button-details>
+                                        details
+                                    </x-button-details>
+                                </a>
                         </x-td>
                     </tr>
                 @endforeach

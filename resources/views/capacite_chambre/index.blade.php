@@ -34,15 +34,17 @@
                     <x-td>{{ $cap->titre_capacite }}</x-td>
                     <x-td>{{ $cap->numero_capacite }}</x-td>
                     <x-td class="flex gap-4 text-center">
-                        <x-button class="bg-blue-600" type="submit">
-                            <a href="{{route('capacite.edit', $cap->id)}}">update</a>
-                        </x-button>
+                        <a href="{{route('capacite.edit', $cap->id)}}">
+                                <x-button-edit class="bg-blue-600" type="submit">
+                                    modifier
+                                </x-button-ed>
+                            </a>
                         <form action="{{ route('capacite.destroy', $cap->id) }}" method="post">
                             @csrf
                             @method("DELETE")
-                            <x-button class="bg-red-600" onclick="return confirm('are you sure')">
-                                delete
-                            </x-button>
+                            <x-button-delete class="bg-red-600" onclick="return confirm('are you sure')">
+                                supprimer
+                            </x-button-delete>
                         </form>
                     </x-td>
                 </tr>
