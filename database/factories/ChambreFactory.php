@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Capacite_chambre;
-use App\Models\Tarif_chambre;
-use App\Models\Type_chambre;
+use App\Models\CapaciteChambre;
+use App\Models\TarifChambre;
+use App\Models\TypeChambre;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,9 +26,9 @@ class ChambreFactory extends Factory
             "etage_chambre" => fake()->numberBetween(0,4),
             "nbr_lits_chambre" => fake()->numberBetween(0,4),
             "image_chambre" => '',
-            "tarif_chambre_id" => Tarif_chambre::inRandomOrder()->first()->id,
-            "type_chambre_id" => Type_chambre::inRandomOrder()->first()->id,
-            "capacite_chambre_id" => Capacite_chambre::inRandomOrder()->first()->id,
+            "tarif_chambre_id" => TarifChambre::inRandomOrder()->first()->id,
+            "type_chambre_id" => TypeChambre::inRandomOrder()->first()->id,
+            "capacite_chambre_id" => CapaciteChambre::inRandomOrder()->first()->id,
         ];
     }
 }
