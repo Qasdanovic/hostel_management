@@ -10,8 +10,26 @@ class ClientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->all() && !$request->page){
+            $query = Client::query();
+            
+            if($request->nom_complet){
+                $query->where("nom_complet", $request->nom_complet);
+            }
+            if($request->ville){
+                $query->where("ville", $request->ville);
+            }
+            if($request->pays){
+                $query->where("pays", $request->pays);
+            }
+            // dd($query);
+
+            $clients = $query->get();
+            return view("clients.index", compact("clients"));
+        }
+
         $clients = Client::simplePaginate(5);
         return view("clients.index", compact("clients"));
     }
@@ -53,12 +71,13 @@ class ClientController extends Controller
         //
     }
 
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Client $client)
     {
-        //
+        return view("clients.edit", compact("client"));
     }
 
     /**
@@ -66,7 +85,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        return "update";
     }
 
     /**

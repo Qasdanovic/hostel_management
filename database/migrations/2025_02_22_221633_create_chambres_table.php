@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Capacite_chambre;
-use App\Models\Tarif_chambre;
-use App\Models\Type_chambre;
+use App\Models\CapaciteChambre;
+use App\Models\TarifChambre;
+use App\Models\TypeChambre;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,9 +22,9 @@ return new class extends Migration
             $table->integer("etage_chambre");
             $table->integer("nbr_lits_chambre");
             $table->string("image_chambre")->nullable();
-            $table->foreignIdFor(Tarif_chambre::class)->constrained("tarif_chambres")->cascadeOnDelete();
-            $table->foreignIdFor(Type_chambre::class)->constrained("type_chambres")->cascadeOnDelete();
-            $table->foreignIdFor(Capacite_chambre::class)->constrained("capacite_chambres")->cascadeOnDelete();
+            $table->foreignIdFor(TarifChambre::class)->constrained("tarif_chambres")->cascadeOnDelete();
+            $table->foreignIdFor(TypeChambre::class)->constrained("type_chambres")->cascadeOnDelete();
+            $table->foreignIdFor(CapaciteChambre::class)->constrained("capacite_chambres")->cascadeOnDelete();
             $table->timestamps();
         });
     }

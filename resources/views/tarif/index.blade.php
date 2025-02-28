@@ -1,11 +1,13 @@
 <x-app-layout>
     <x-slot:header>chambre tarifs</x-slot:header>
 
+    
     <div class="flex justify-between my-7">
-        <h1 class="text-white text-3xl">tarifs des chambres :</h1>
-        <x-button class="bg-green-600">
-            <a href="{{ route('tarifs.create') }}"> + add new tarif</a>
-        </x-button>
+        <a href="{{ route('tarifs.create') }}" class="text-white">
+            <x-button-edit class="w-[200px]">
+                ajouter un tarif
+            </x-button-edit>
+        </a>
     </div>
 
     @if(session()->has('success'))

@@ -1,11 +1,13 @@
 <x-app-layout>
     <x-slot:header>chambre capacites</x-slot:header>
 
+    
     <div class="flex justify-between my-7">
-        <h1 class="text-white text-3xl">capacite des chambres :</h1>
-        <x-button class="bg-green-600">
-            <a href="{{ route('capacite.create') }}"> + add new capacite</a>
-        </x-button>
+        <a href="{{ route('capacite.create') }}" class="text-white">
+            <x-button-edit class="w-[200px]">
+                ajouter un capacite
+            </x-button-edit>
+        </a>
     </div>
 
     @if(session()->has('success'))
@@ -29,7 +31,7 @@
         </thead>
         <tbody>
             @foreach ($capacites as $cap)
-                <tr class="bg-gray-200">
+                <tr class="bg-gray-200 border-gray-400 border-2">
                     <x-td>{{ $cap->id }}</x-td>
                     <x-td>{{ $cap->titre_capacite }}</x-td>
                     <x-td>{{ $cap->numero_capacite }}</x-td>

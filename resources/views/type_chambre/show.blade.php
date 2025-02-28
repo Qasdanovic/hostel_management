@@ -19,7 +19,7 @@
     <div class="text-white">
         chambres avec ce type :
         @foreach ($type->chambres as $item)
-            <span class="text-bold">{{ $item->numero_chambre }}</span>
+            <span class="text-bold">{{ $item->numero_chambre }} |</span>
         @endforeach
     </div>
 </x-app-layout>

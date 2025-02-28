@@ -2,10 +2,11 @@
     <x-slot:header>chambre types</x-slot:header>
 
     <div class="flex justify-between my-7">
-        <h1 class="text-white text-3xl">types des chambres :</h1>
-        <x-button class="bg-green-600">
-            <a href="{{ route('types.create') }}"> + add new type</a>
-        </x-button>
+        <a href="{{ route('types.create') }}" class="text-white">
+            <x-button-edit class="w-[200px]">
+                ajouter un type
+            </x-button-edit>
+        </a>
     </div>
 
     @if(session()->has('success'))
