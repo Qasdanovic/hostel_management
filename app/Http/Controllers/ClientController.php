@@ -85,7 +85,19 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        return "update";
+        $data = $request->validate([
+            "nom_complet"=>"required",
+            "sexe"=>"required",
+            "date_naissance"=>"required",
+            "age"=> "required",
+            "pays"=>"required",
+            "ville"=>"required",
+            "adresse"=>"required",
+            "telephone"=>"required"
+        ]);
+
+        $client->update($data);
+        return redirect()->route("clients.index")->with("success", "client modifier avec success");
     }
 
     /**

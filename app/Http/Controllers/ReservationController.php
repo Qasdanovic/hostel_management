@@ -12,7 +12,11 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations = Reservation::with([
+            "client",
+            "chambre"
+        ])->get() ;
+        dd($reservations);
     }
 
     /**

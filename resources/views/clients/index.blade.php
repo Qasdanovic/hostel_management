@@ -62,7 +62,7 @@
                 <x-td>{{ $client->telephone }}</x-td>
                 <x-td class="w-20">
                     <a href="{{ route('clients.edit', $client->id)}}">
-                        <x-button-edit class="hover:bg-yellow-600">
+                        <x-button-edit>
                             Update
                         </x-button-edit>
                     </a>

@@ -91,19 +91,12 @@
                 <x-input-error :messages="$errors->get('adresse')" class="mt-2" />
             </div>
             <div class="mt-4 flex-1">
-                <label for="email" class="text-white">email :</label>
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ $client->email }}" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
-        </div>
-        <div class="flex flex-wrap gap-4">
-            <div class="mt-4 flex-1">
                 <label for="telephone" class="text-white">telephone :</label>
-                <x-text-input id="telephone" class="block mt-1 w-[49%]" type="text" name="telephone" value="{{ $client->telephone }}" />
+                <x-text-input id="telephone" class="block mt-1 w-full" type="text" name="telephone" value="{{ $client->telephone }}" />
                 <x-input-error :messages="$errors->get('telephone')" class="mt-2" />
             </div>
         </div>
-        <x-button type="submit" class="my-3 bg-blue-600">ajouter client</x-button>
+        <x-button type="submit" class="my-3 bg-blue-600">modifier client</x-button>
     </form>
 </x-app-layout>
 
