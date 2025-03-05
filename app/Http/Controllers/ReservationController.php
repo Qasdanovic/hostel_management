@@ -16,7 +16,8 @@ class ReservationController extends Controller
             "client",
             "chambre"
         ])->get() ;
-        dd($reservations);
+        // dd($reservations);
+        return view("reservations.index", compact("reservations")) ;
     }
 
     /**
