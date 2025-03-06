@@ -29,6 +29,7 @@
                         ['route' => 'tarifs.index', 'title' => 'Pricing', 'count' => $tarifs, 'color' => 'bg-gradient-to-br from-blue-500 to-blue-600', 'icon' => 'fas fa-dollar-sign'],
                         ['route' => 'chambres.index', 'title' => 'Rooms', 'count' => $chambres, 'color' => 'bg-gradient-to-br from-orange-500 to-orange-600', 'icon' => 'fas fa-bed'],
                         ['route' => 'clients.index', 'title' => 'Clients', 'count' => $clients, 'color' => 'bg-gradient-to-br from-purple-500 to-purple-600', 'icon' => 'fas fa-user'],
+                        ['route' => 'reservations.index', 'title' => 'reservations', 'count' => $reservations, 'color' => 'bg-gradient-to-br from-indigo-500 to-indigo-600', 'icon' => 'fas fa-hotel'],
                     ];
                 @endphp
 

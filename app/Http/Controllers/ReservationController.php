@@ -14,6 +14,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
+        $query = Reservation::query();
         $chambres = Chambre::all();
         $clients = Client::all();
 
@@ -27,10 +28,28 @@ class ReservationController extends Controller
             return view("reservations.index", compact("reservations", "chambres", "clients"));
         }
 
-        $reservations = Reservation::with([
-            "client",
-            "chambre"
-        ])->get();
+        if(request("date_debut")){
+            $query->where("Date_arrivee",">=", request("date_debut"));
+        }
+
+        if(request("date_fin")){
+            $query->where("Date_depart","<=", request("date_fin"));
+        }
+
+        if(request("chambre_id")){
+            $query->where("chambre_id", request("chambre_id"));
+        }
+
+        if(request("client_id")){
+            $query->where("client_id", request("client_id"));
+        }
+
+        $reservations = $query->with(["client", "chambre"])->get();
+
+        // $reservations = Reservation::with([
+        //     "client",
+        //     "chambre"
+        // ])->get();
 
         return view("reservations.index", compact("reservations", "chambres", "clients"));
     }

@@ -7,11 +7,8 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="flex justify-between items-center mb-8">
-            <a href="{{ route('reservations.create') }}">
-                <x-button-edit class="flex items-center gap-2 w-[160px] bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 transition-colors duration-200 text-white font-semibold py-3 px-6 rounded-lg shadow-lg">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                    </svg>
+            <a href="{{ route('reservations.create') }}" class="px-8 py-4">
+                <x-button-edit class="flex items-center gap-2  bg-blue-600 w-full hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 transition-colors duration-200 text-white font-semibold rounded-lg shadow-lg">
                     Nouvelle réservation
                 </x-button-edit>
             </a>
@@ -88,7 +85,7 @@
                 </select>
             </div>
             <div class="flex items-end">
-                <button type="submit" class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2.5 px-4 rounded-lg transition-colors duration-200">
+                <button type="submit" class="bg-blue-700 hover:bg-blue-500 text-white font-bold mt-4 py-2.5 px-4 rounded-lg transition-colors duration-200">
                 Rechercher
                 </button>
             </div>
