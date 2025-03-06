@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chambre;
+use App\Models\Client;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
@@ -12,15 +14,17 @@ class ReservationController extends Controller
      */
     public function index()
     {
+        $chambres = Chambre::all();
+        $clients = Client::all();
 
-        if (request()->has("etat")) {
+        if (request()->query("etat")) {
             $reservations = Reservation::where("Etat", "=", request("etat"))
                 ->with([
                     "client",
                     "chambre"
                 ])->get();
                 
-            return view("reservations.index", compact("reservations"));
+            return view("reservations.index", compact("reservations", "chambres", "clients"));
         }
 
         $reservations = Reservation::with([
@@ -28,7 +32,7 @@ class ReservationController extends Controller
             "chambre"
         ])->get();
 
-        return view("reservations.index", compact("reservations"));
+        return view("reservations.index", compact("reservations", "chambres", "clients"));
     }
 
     /**

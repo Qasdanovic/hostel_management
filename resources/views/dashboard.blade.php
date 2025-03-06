@@ -5,32 +5,53 @@
         </h2>
     </x-slot>
 
-    <div class="text-center text-white font-bold text-2xl mb-4">Welcome back, Mr. {{ Auth::user()->name }}</div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @php
-            $cards = [
-                ['route' => 'types.index', 'title' => 'Types', 'count' => $types, 'color' => 'bg-red-500', 'icon' => 'fas fa-list'],
-                ['route' => 'capacite.index', 'title' => 'Capacite', 'count' => $capacites, 'color' => 'bg-green-500', 'icon' => 'fas fa-users'],
-                ['route' => 'tarifs.index', 'title' => 'Tarifs', 'count' => $tarifs, 'color' => 'bg-blue-500', 'icon' => 'fas fa-dollar-sign'],
-                ['route' => 'chambres.index', 'title' => 'Chambres', 'count' => $chambres, 'color' => 'bg-orange-500', 'icon' => 'fas fa-bed'],
-                ['route' => 'clients.index', 'title' => 'Clients', 'count' => $clients, 'color' => 'bg-rose-500', 'icon' => 'fas fa-user'],
-                // ['route' => 'reservations.index', 'title' => 'Reservations', 'count' => $reservations, 'color' => 'bg-gray-500', 'icon' => 'fa-solid fa-calendar-check'],
-            ];
-        @endphp
-
-        @foreach ($cards as $card)
-            <div class="p-6 rounded-lg shadow-lg {{ $card['color'] }} transform transition duration-500 hover:scale-105">
+    <div class="py-12 bg-gray-100 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Welcome Message -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
                 <div class="flex items-center space-x-4">
-                    <div class="text-white text-4xl">
-                        <i class="{{ $card['icon'] }}"></i>
+                    <div class="p-3 bg-blue-500 rounded-full">
+                        <i class="fas fa-user-circle text-white text-2xl"></i>
                     </div>
-                    <div class="text-white">
-                        <a href="{{ route($card['route']) }}" class="text-2xl font-bold hover:underline">{{ $card['title'] }}</a>
-                        <p class="font-bold text-lg">{{ $card['count'] }}</p>
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">Welcome back,</h3>
+                        <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">{{ Auth::user()->name }}</p>
                     </div>
                 </div>
             </div>
-        @endforeach
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @php
+                    $cards = [
+                        ['route' => 'types.index', 'title' => 'Room Types', 'count' => $types, 'color' => 'bg-gradient-to-br from-red-500 to-red-600', 'icon' => 'fas fa-list'],
+                        ['route' => 'capacite.index', 'title' => 'Capacity', 'count' => $capacites, 'color' => 'bg-gradient-to-br from-green-500 to-green-600', 'icon' => 'fas fa-users'],
+                        ['route' => 'tarifs.index', 'title' => 'Pricing', 'count' => $tarifs, 'color' => 'bg-gradient-to-br from-blue-500 to-blue-600', 'icon' => 'fas fa-dollar-sign'],
+                        ['route' => 'chambres.index', 'title' => 'Rooms', 'count' => $chambres, 'color' => 'bg-gradient-to-br from-orange-500 to-orange-600', 'icon' => 'fas fa-bed'],
+                        ['route' => 'clients.index', 'title' => 'Clients', 'count' => $clients, 'color' => 'bg-gradient-to-br from-purple-500 to-purple-600', 'icon' => 'fas fa-user'],
+                    ];
+                @endphp
+
+                @foreach ($cards as $card)
+                    <div class="relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="p-6 {{ $card['color'] }}">
+                            <div class="flex items-center justify-between">
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-semibold text-white mb-1">{{ $card['title'] }}</h3>
+                                    <p class="text-3xl font-bold text-white">{{ number_format($card['count']) }}</p>
+                                </div>
+                                <div class="text-white text-3xl opacity-80">
+                                    <i class="{{ $card['icon'] }}"></i>
+                                </div>
+                            </div>
+                            <a href="{{ route($card['route']) }}" 
+                               class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300">
+                                <span class="sr-only">View {{ $card['title'] }}</span>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </div>
 </x-app-layout>

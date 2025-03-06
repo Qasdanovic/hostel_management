@@ -1,34 +1,48 @@
 <x-app-layout>
     <x-slot:header>
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Reservations
+        <h2 class="text-2xl font-bold text-gray-200 dark:text-gray-100 leading-tight tracking-wide">
+            Gestion des Reservations
         </h2>
     </x-slot:header>
 
-    <div class="flex justify-between my-7">
-        <a href="{{ route('reservations.create') }}" class="text-white">
-            <x-button-edit class="w-[200px] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Ajouter une réservation
-            </x-button-edit>
-        </a>
-    </div>
-
-    @if(session()->has('success'))
-        <div class="my-2 px-4 py-2 text-green-800 bg-green-200 border border-green-400 rounded">
-            {{ session('success') }}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <a href="{{ route('reservations.create') }}">
+                <x-button-edit class="flex items-center gap-2 w-[160px] bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 transition-colors duration-200 text-white font-semibold py-3 px-6 rounded-lg shadow-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    </svg>
+                    Nouvelle réservation
+                </x-button-edit>
+            </a>
         </div>
-    @endif
-    @if(session()->has('error'))
-        <div class="my-2 px-4 py-2 text-red-800 bg-red-400 border border-red-500 rounded">
-            {{ session('error') }}
-        </div>
-    @endif
 
-    <div class="overflow-x-auto">
-        <div class="mb-4">
-            <form action="{{ route('reservations.index') }}" method="GET" class="flex gap-4">
-                <select name="etat" class=" bg-gray-900 text-white block mt-1 w-full rounded" onchange="this.form.submit()">
-                    <option value="">choisir un etat :</option>
+        @if(session()->has('success'))
+            <div class="mb-6 p-4 rounded-lg bg-green-100 dark:bg-green-900 border-l-4 border-green-500">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <p class="text-green-700 dark:text-green-300 font-medium">{{ session('success') }}</p>
+                </div>
+            </div>
+        @endif
+
+        @if(session()->has('error'))
+            <div class="mb-6 p-4 rounded-lg bg-red-100 dark:bg-red-900 border-l-4 border-red-500">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <p class="text-red-700 dark:text-red-300 font-medium">{{ session('error') }}</p>
+                </div>
+            </div>
+        @endif
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+            <form action="{{ route('reservations.index') }}" method="GET" class="flex gap-4 items-center">
+                <select name="etat" class="flex-1 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 transition-colors duration-200" onchange="this.form.submit()">
+                    <option value="">Filtrer par état</option>
                     <option value="Planifie" {{ request('etat') == 'Planifie' ? 'selected' : '' }}>Planifiées</option>
                     <option value="En cours" {{ request('etat') == 'En cours' ? 'selected' : '' }}>En cours</option>
                     <option value="Terminee" {{ request('etat') == 'Terminee' ? 'selected' : '' }}>Terminées</option>
@@ -37,10 +51,47 @@
                     Filtrer
                 </button>
                 <a href="{{route('reservations.index')}}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                    <button type="button" >
-                        annuler
-                    </button>
+                    Annuler
                 </a>
+            </form>
+        </div>
+        <div class="mb-4">
+            <form action="{{ route('reservations.index') }}" method="GET" class="flex gap-4 items-center bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <div class="flex-1">
+                <label for="date_debut" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Du</label>
+                <input type="date" name="date_debut" id="date_debut" class="mt-1 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 w-full transition-colors duration-200">
+            </div>
+            <div class="flex-1">
+                <label for="date_fin" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Au</label>
+                <input type="date" name="date_fin" id="date_fin" class="mt-1 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 w-full transition-colors duration-200">
+            </div>
+            <div class="flex-1">
+                <label for="chambre_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Numéro de la chambre</label>
+                <select name="chambre_id" id="chambre_id" class="mt-1 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 w-full transition-colors duration-200">
+                <option value="">Choisir un numéro de chambre</option>
+                @foreach($chambres as $chambre)
+                    <option value="{{ $chambre->id }}" {{ request('chambre_id') == $chambre->id ? 'selected' : '' }}>
+                    {{ $chambre->numero_chambre }}
+                    </option>
+                @endforeach
+                </select>
+            </div>
+            <div class="flex-1">
+                <label for="client_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Client</label>
+                <select name="client_id" id="client_id" class="mt-1 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 w-full transition-colors duration-200">
+                <option value="">Choisir un client</option>
+                @foreach($clients as $client)
+                    <option value="{{ $client->id }}" {{ request('client_id') == $client->id ? 'selected' : '' }}>
+                    {{ $client->nom_complet }}
+                    </option>
+                @endforeach
+                </select>
+            </div>
+            <div class="flex items-end">
+                <button type="submit" class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2.5 px-4 rounded-lg transition-colors duration-200">
+                Rechercher
+                </button>
+            </div>
             </form>
         </div>
         @if ($reservations->count() > 0)
