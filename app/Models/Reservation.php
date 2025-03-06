@@ -21,10 +21,3 @@ class Reservation extends Model
     
     
 }
-
-class Projet extends Model {
-    public function employes()
-    {
-        return $this->belongsToMany(Employe::class);
-    }
-}

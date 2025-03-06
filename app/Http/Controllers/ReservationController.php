@@ -12,12 +12,23 @@ class ReservationController extends Controller
      */
     public function index()
     {
+
+        if (request()->has("etat")) {
+            $reservations = Reservation::where("Etat", "=", request("etat"))
+                ->with([
+                    "client",
+                    "chambre"
+                ])->get();
+                
+            return view("reservations.index", compact("reservations"));
+        }
+
         $reservations = Reservation::with([
             "client",
             "chambre"
-        ])->get() ;
-        // dd($reservations);
-        return view("reservations.index", compact("reservations")) ;
+        ])->get();
+
+        return view("reservations.index", compact("reservations"));
     }
 
     /**
@@ -25,7 +36,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        return view("reservations.create");
     }
 
     /**
