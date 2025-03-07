@@ -144,8 +144,7 @@
             </table>
         @else
             <div class="text-red-600 text-center text-2xl py-40 items-center">
-            <i class="fa fa-exclamation-circle"></i> pas de resultat a l'etat de 
-            <p class="font-bold">{{ request('etat') }}</p>
+                <i class="fa fa-exclamation-circle"></i> pas de resultat 
             </div>
         @endif
     </div>
