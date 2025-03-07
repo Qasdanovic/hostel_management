@@ -60,22 +60,22 @@
                 <x-td>{{ $client->pays }}</x-td>
                 <x-td>{{ $client->ville }}</x-td>
                 <x-td>{{ $client->telephone }}</x-td>
-                <x-td class="w-20">
+                <x-td class="w-20 flex gap-4 items-center">
                     <a href="{{ route('clients.edit', $client->id)}}">
                         <x-button-edit>
-                            Update
+                            
                         </x-button-edit>
                     </a>
                     <form action="{{ route('clients.destroy', $client->id) }}" class="my-3" method="post">
                         @csrf
                         @method("DELETE")
                         <x-button-delete class="hover:bg-red-600">
-                            Delete
+                            
                         </x-button-delete>
                     </form>
                     <a href="{{ route('clients.show', $client->id)}}">
                         <x-button-details class="hover:bg-blue-600">
-                            Details
+                            
                         </x-button-details>
                     </a>
                 </x-td>

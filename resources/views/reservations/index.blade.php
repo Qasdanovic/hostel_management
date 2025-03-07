@@ -122,19 +122,19 @@
                             <x-td class="flex justify-center gap-4 items-center">
                                 <a href="{{ route('reservations.edit', $res->id) }}">
                                     <x-button-edit>
-                                        Éditer
+                                        
                                     </x-button-edit>
                                 </a>
                                 <form action="{{ route('reservations.destroy', $res->id) }}" method="post">
                                     @csrf
                                     @method("DELETE")
                                     <x-button-delete class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                        Supprimer
+                                        
                                     </x-button-delete>
                                 </form>
                                 <a href="{{ route('reservations.show', $res->id) }}">
                                     <x-button-details class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                        Détails
+                                        
                                     </x-button-details>
                                 </a>
                             </x-td>
