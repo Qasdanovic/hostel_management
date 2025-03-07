@@ -9,7 +9,6 @@
                 <x-nav-link class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     <div>
                         {{ __('Dashboard') }}
-<<<<<<< HEAD:resources/views/layouts/Resnavigation.blade.php
                     </div>
                 </x-nav-link>
                 <x-nav-link class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" :href="route('types.index')" :active="request()->routeIs('types.*')">
@@ -29,27 +28,6 @@
                 </x-nav-link>
                 <x-nav-link class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" :href="route('chambres.index')" :active="request()->routeIs('chambres.*')">
                     <div>
-=======
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('types.index')" :active="request()->routeIs('types.*')">
-                        {{ __('chambre types') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('capacite.index')" :active="request()->routeIs('capacite.*')">
-                        {{ __('chambre capacite') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('tarifs.index')" :active="request()->routeIs('tarifs.*')">
-                        {{ __('chambre tarif') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('chambres.index')" :active="request()->routeIs('chambres.*')">
->>>>>>> c8cbc06 (7- create show page for each controller):resources/views/layouts/navigation.blade.php
                         {{ __('chambres') }}
                     </div>
                 </x-nav-link>

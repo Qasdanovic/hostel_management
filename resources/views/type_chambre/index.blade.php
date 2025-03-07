@@ -48,15 +48,9 @@
                             </x-button-delete>
                         </form>
                         <a href="{{route('types.show', $type->id)}}">
-<<<<<<< HEAD
                             <x-button-details>
                                 details
                             </x-button-details>
-=======
-                            <x-button class="bg-green-600">
-                                details
-                            </x-button>
->>>>>>> c8cbc06 (7- create show page for each controller)
                         </a>
                     </x-td>
                 </tr>
