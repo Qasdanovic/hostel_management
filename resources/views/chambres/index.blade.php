@@ -15,10 +15,15 @@
             {{ session('success') }}
         </div>
     @endif
+    @if(session()->has('error'))
+        <div class="my-2 px-4 py-2 text-red-800 bg-red-200 border border-red-400 rounded">
+            {{ session('error') }}
+        </div>
+    @endif
 
     <!-- Make the table responsive -->
     <div class="overflow-x-auto">
-        <table class="min-w-full bg-white rounded-lg overflow-hidden shadow-lg my-5">
+        <table class="min-w-full bg-white rounded-lg overflow-hidden shadow-lg my-5 text-center">
             <thead class='text-center'>
             <tr class="bg-gray-300 text-white">
             <x-th class="px-4 py-3">id</x-th>
@@ -45,7 +50,7 @@
             <x-td class="px-4 py-3">{{ $ch->capacite->titre_capacite }}</x-td>
             <x-td class="px-4 py-3">{{ $ch->capacite->nbr_lits_chambre }}</x-td>
             <x-td class="px-4 py-3">{{ $ch->etage_chambre }}</x-td>
-            <x-td class="px-4 py-3">{{ $ch->capacite->nombre_adultes_enfants_chambre }}</x-td>
+            <x-td class="px-4 py-3">{{ $ch->nombre_adultes_enfants_chambre }}</x-td>
             <x-td class="px-4 py-3 w-[150px]">
                 <img src="{{ asset('storage/'.$ch->image_chambre) }}" 
                  alt="{{ $ch->image_chambre }}"

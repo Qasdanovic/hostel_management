@@ -146,6 +146,10 @@ class ChambreController extends Controller
      */
     public function destroy(Chambre $chambre)
     {
+        if($chambre->reservations->count()){
+            return redirect()->route('chambres.index')->with('error', 'Opération interdite : chambre déjà un objet de réservation.');
+        }
+
         $chambre->delete() ;
         return redirect()->route('chambres.index')->with('success', 'Chambre supprimer avec success!');
     }
