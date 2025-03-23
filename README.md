@@ -1,53 +1,61 @@
 # Hotel Management System
 
 ## Description
-A comprehensive hotel management system designed to streamline hotel operations, manage bookings, and handle customer interactions efficiently.
+Un système de gestion d'hôtel complet conçu pour simplifier les opérations hôtelières, gérer les réservations et améliorer l'interaction avec les clients.
 
-## Features
-- Room booking and management
-- Customer check-in/check-out
-- Billing system
-- Room service management
-- Staff management
-- Reporting and analytics
+## Fonctionnalités
+- Gestion des réservations de chambres
+- Enregistrement et départ des clients
+- Système de facturation
+- Gestion des services en chambre
+- Gestion du personnel
+- Rapports et analyses
 
-## Installation Steps
+## Étapes d'installation
 
-1. **Clone the repository**
+1. **Cloner le dépôt**
     ```bash
     git clone https://github.com/Qasdanovic/hostel-management.git
     cd hotel-management
     ```
 
-2. **Install dependencies**
+2. **Installer les dépendances**
     ```bash
+    composer install
     npm install
     ```
 
-3. **Configure environment variables**
-    - Create a `.env` file
-    - Add necessary configuration parameters
-
-4. **Setup database**
+3. **Configurer les variables d'environnement**
+    - Copier le fichier `.env.example` en `.env`
+    - Modifier les paramètres nécessaires dans `.env`
     ```bash
-    npm run migrate
-    npm run seed
+    cp .env.example .env
+    php artisan key:generate
     ```
 
-5. **Start the application**
+4. **Configurer la base de données**
     ```bash
-    npm start
+    php artisan migrate --seed
     ```
 
-## Prerequisites
-- Node.js (v14 or higher)
-- MySQL/PostgreSQL
-- npm or yarn
+5. **Démarrer l'application**
+    ```bash
+    php artisan serve
+    npm run dev
+    ```
 
-## Technologies Used
-- Backend: Node.js
-- Database: MySQL
-- Frontend: blade
+## Prérequis
+- PHP (>= 8.0)
+- Laravel
+- MySQL
+- Node.js (>= 14)
+- npm ou yarn
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Technologies utilisées
+- **Backend :** Laravel
+- **Base de données :** MySQL
+- **Frontend :** Blade
+
+## Contribution
+Les pull requests sont les bienvenues. Pour des modifications majeures, veuillez ouvrir une issue d'abord pour discuter des changements proposés.
+
