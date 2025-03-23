@@ -1,5 +1,5 @@
 # Hotel Management System
-##Demo :
+## Demo :
 ![Image](https://github.com/user-attachments/assets/ee0a3565-aaba-4c93-96d0-79100e10aada)
 
 ## Description
